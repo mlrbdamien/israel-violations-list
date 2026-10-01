@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Israel and International Law: 100 Findings</title>
+<meta name="description" content="100 findings by courts, UN bodies, human-rights organisations and investigators on Israel's violations of international law, with sources.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f4f1ea;--ink:#1a1a1a;--grey:#6b665e;--rule:#cfc8bb;--red:#b3261e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:18px/1.55 "Newsreader",Georgia,serif}
+a{color:inherit}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+.label{font-family:"Public Sans",Arial,sans-serif;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+
+/* masthead */
+.mast{border-bottom:3px double var(--ink);padding:28px 0 14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.mast .label{color:var(--grey)}
+header.title{padding:56px 0 36px;border-bottom:1px solid var(--rule)}
+h1{font-weight:600;font-size:clamp(36px,6vw,60px);line-height:1.05;margin:0;letter-spacing:-.015em}
+h1 em{font-weight:400;color:var(--red)}
+
+
+
+
+/* findings */
+section{padding-top:44px;scroll-margin-top:20px}
+section h2.sec{font-size:28px;font-weight:600;margin:0 0 14px;display:flex;gap:14px;align-items:baseline}
+section h2.sec .label{color:var(--red);font-size:13px}
+.range{color:var(--grey);margin-bottom:10px}
+.item{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--rule)}
+.num{font-size:26px;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--grey)}
+.item h3{font-size:19px;font-weight:600;margin:0 0 2px;line-height:1.3}
+.item p{margin:0}
+.src{margin-top:6px;color:var(--grey)}
+.src.court{color:var(--red)}
+
+footer{margin-top:56px;padding:20px 0 40px;border-top:1px solid var(--rule);color:var(--grey)}
+
+@media (max-width:640px){
+  body{font-size:17px}
+    .item{grid-template-columns:42px 1fr;gap:10px}
+  .num{font-size:20px}
+}
+@media print{.item{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="mast label"><span>Documented record</span><span>Updated 1 October 2026</span></div>
+
+  <header class="title">
+    <h1>Israel and international law: <em>100 findings</em></h1>
+  </header>
+</div>
+
+<main class="wrap">
+  <div id="list"></div>
+
+  <footer class="label">Compiled from court records, UN documents, NGO reports and investigative journalism. Last checked 1 October 2026.</footer>
+</main>
+
+<script>
+const SECTIONS = [
+  ["occupation","Occupation, settlements and annexation"],
+  ["apartheid","Apartheid and systemic discrimination"],
+  ["pre2023","Gaza before October 2023"],
+  ["hostilities","Conduct of hostilities in Gaza since 2023"],
+  ["starvation","Starvation and obstruction of aid"],
+  ["displacement","Forced displacement and ethnic cleansing"],
+  ["genocide","Genocide: court orders and findings"],
+  ["detention","Detention, torture and West Bank killings"],
+  ["earlier","Earlier conflicts and Lebanon"]
+];
+// [section, title, text, type]  — type: court | un | ngo | inquiry
+const D = [
+["occupation","Settlements declared legally void (1979)","UN Security Council Resolution 446 found Israeli settlements in territories occupied since 1967 have no legal validity.","un"],
+["occupation","Order to dismantle settlements ignored (1980)","UNSC Resolution 465 called on Israel to dismantle existing settlements and stop building new ones. Settlement building continued.","un"],
+["occupation","Annexation of East Jerusalem declared null (1980)","UNSC Resolution 478 declared Israel's “Basic Law: Jerusalem” null and void.","un"],
+["occupation","Annexation of the Golan Heights declared null (1981)","UNSC Resolution 497 declared Israel's imposition of its law on the Syrian Golan null and void.","un"],
+["occupation","Settlements a flagrant violation (2016)","UNSC Resolution 2334 restated that settlements breach international law, including Article 49(6) of the Fourth Geneva Convention.","un"],
+["occupation","Separation wall ruled unlawful (2004)","The ICJ advisory opinion of 9 July 2004 found the wall built inside occupied territory contrary to international law and said Israel must dismantle it and pay reparation.","court"],
+["occupation","Wall construction continued after the ruling","UN OCHA has documented continued construction and the isolation of Palestinian land behind the barrier in the two decades since 2004.","un"],
+["occupation","The occupation itself ruled unlawful (2024)","The ICJ advisory opinion of 19 July 2024 found Israel's continued presence in the occupied Palestinian territory unlawful and said it must end as rapidly as possible.","court"],
+["occupation","Settler transfer and resource exploitation (2024)","The same ICJ opinion found that transferring settlers, confiscating land and exploiting natural resources, including water, breach Israel's obligations as occupying power.","court"],
+["occupation","UN General Assembly deadline not met (2024–2025)","Resolution ES-10/24 (18 September 2024) demanded Israel end its unlawful presence within 12 months. Israel did not withdraw.","un"],
+["occupation","22 new settlements approved (May 2025)","Israel's security cabinet approved 22 new West Bank settlements, the largest single expansion in decades according to Peace Now.","ngo"],
+["occupation","E1 settlement plan approved (August 2025)","Israel advanced about 3,400 housing units in E1 east of Jerusalem. The UN rights office said settlement transfer is a war crime and the plan would cut the West Bank in two.","un"],
+["occupation","Punitive demolition of family homes","Israel demolishes homes of families of alleged attackers. B'Tselem and HRW document this as collective punishment, banned by Article 33 of the Fourth Geneva Convention.","ngo"],
+["occupation","Administrative demolitions in Area C and East Jerusalem","OCHA's database records thousands of Palestinian structures destroyed for lack of permits that Israel almost never grants.","un"],
+["occupation","Jerusalem residency revoked","Human Rights Watch (2017) reported more than 14,500 East Jerusalem Palestinians stripped of residency since 1967, a practice it called discriminatory.","ngo"],
+
+["apartheid","Racial segregation finding by the ICJ (2024)","The 2024 advisory opinion found Israel's measures in occupied territory breach Article 3 of the Convention on the Elimination of Racial Discrimination, which bans segregation and apartheid.","court"],
+["apartheid","Human Rights Watch apartheid finding (2021)","The report A Threshold Crossed concluded Israeli officials commit the crimes against humanity of apartheid and persecution.","ngo"],
+["apartheid","Amnesty International apartheid finding (2022)","Amnesty's report Israel's Apartheid against Palestinians found a system of oppression and domination amounting to apartheid.","ngo"],
+["apartheid","B'Tselem apartheid finding (2021)","Israel's leading human-rights group described a single regime of Jewish supremacy from the river to the sea and called it apartheid.","ngo"],
+["apartheid","UN Special Rapporteur apartheid finding (2022)","Michael Lynk's report to the Human Rights Council (A/HRC/49/87) concluded the system in the occupied territory meets the legal definition of apartheid.","un"],
+["apartheid","Two legal systems in one territory","In the West Bank, Palestinians are tried in military courts while settlers beside them fall under Israeli civilian law, as documented by HRW and ACRI.","ngo"],
+["apartheid","Family reunification ban","The Citizenship and Entry into Israel Law (2003, renewed since) bars most Palestinians from the occupied territory from living with Israeli spouses. The UN CERD called for its revocation.","un"],
+
+["pre2023","Blockade as collective punishment (2010)","The ICRC stated in June 2010 that the closure of Gaza, in place since 2007, is collective punishment in clear violation of international humanitarian law.","un"],
+["pre2023","Flotilla raid (2010)","A UN Human Rights Council fact-finding mission (A/HRC/15/21) found serious violations in the raid on the Mavi Marmara, in which nine passengers were killed (a tenth died later).","un"],
+["pre2023","Excessive force in the raid (2011)","The UN Secretary-General's Palmer Panel judged the boarding force excessive and unreasonable, while finding the naval blockade itself legal.","un"],
+["pre2023","Great March of Return (2018–2019)","The UN Commission of Inquiry found reasonable grounds that snipers shot children, journalists, health workers and people with disabilities posing no imminent threat.","un"],
+["pre2023","May 2021 Gaza war","Human Rights Watch found apparent war crimes, including a strike on al-Shati camp that killed ten members of one family with no evident military target nearby.","ngo"],
+
+["hostilities","Death toll","Gaza's Health Ministry recorded more than 73,000 Palestinians killed by September 2026; the UN has treated its figures as broadly reliable.","un"],
+["hostilities","Women and children among verified dead","An OHCHR analysis (November 2024) of verified fatalities found nearly 70% were women and children, 44% of them children.","un"],
+["hostilities","Under-counting","A peer-reviewed study in The Lancet (January 2025) estimated traumatic deaths in the first nine months were about 40% higher than the ministry's count.","inquiry"],
+["hostilities","Israel's own data","The Guardian, +972 and Local Call (August 2025) reported an Israeli intelligence database listed about 8,900 named fighters dead out of some 53,000 killed, implying roughly 83% civilians.","inquiry"],
+["hostilities","AI-assisted targeting with high civilian thresholds","+972 Magazine (April 2024) reported the “Lavender” system and pre-authorised civilian deaths of 15 to 20 people for strikes on low-ranking militants.","inquiry"],
+["hostilities","Jabalia strike (31 October 2023)","A strike on a residential block aimed at one Hamas commander killed more than 100 people. The UN rights office said it could amount to a war crime.","un"],
+["hostilities","Rafah tent camp strike (26 May 2024)","Two days after the ICJ ordered a halt to the Rafah offensive, a strike on a displacement camp killed about 45 people. Amnesty called for a war-crimes investigation.","ngo"],
+["hostilities","Journalists","The Committee to Protect Journalists calls the Gaza war the deadliest period for journalists it has ever recorded, with Israeli fire responsible for the vast majority of deaths.","ngo"],
+["hostilities","Killing of Anas al-Sharif (August 2025)","Al Jazeera's correspondent and colleagues were killed in a strike on their tent. CPJ condemned it; Israel's claim that he was a Hamas member came without credible public proof.","ngo"],
+["hostilities","Nasser Hospital double strike (25 August 2025)","Two successive strikes killed around 20 people, including five journalists working for Reuters, AP and Al Jazeera.","inquiry"],
+["hostilities","UN staff killed","More than 300 UNRWA staff have been killed, the highest toll of UN personnel in any conflict.","un"],
+["hostilities","World Central Kitchen convoy (1 April 2024)","Seven aid workers were killed in three successive strikes on a coordinated convoy. Israel's own inquiry found serious errors and dismissed two officers.","inquiry"],
+["hostilities","Rafah paramedics (23 March 2025)","Fifteen medics and rescuers were killed and buried in a shallow grave. Phone video contradicted the army's first account; its inquiry dismissed a deputy commander.","inquiry"],
+["hostilities","Hind Rajab (29 January 2024)","A six-year-old was killed with six relatives and the two paramedics sent to rescue her. The Washington Post and Forensic Architecture traced the fire to Israeli tanks.","inquiry"],
+["hostilities","Pattern of attacks on hospitals","An OHCHR report (31 December 2024) found attacks on and around hospitals that may amount to war crimes and pushed the health system to near collapse.","un"],
+["hostilities","Al-Shifa Hospital (March–April 2024)","After a two-week raid, the WHO described Gaza's largest hospital as an empty shell with human graves.","un"],
+["hostilities","Kamal Adwan Hospital (December 2024)","Forces raided and emptied the hospital; its director, Dr Hussam Abu Safiya, was detained without charge, as documented by Amnesty and HRW.","ngo"],
+["hostilities","Mass graves","The UN High Commissioner for Human Rights (April 2024) called for independent investigation of mass graves at Nasser and al-Shifa hospitals.","un"],
+["hostilities","Scale of destruction","UNOSAT satellite analysis found roughly three-quarters of all structures in Gaza damaged or destroyed by mid-2025.","un"],
+["hostilities","Universities destroyed","UN experts (April 2024) said every university in Gaza had been damaged or destroyed; Israa University was blown up by controlled demolition in January 2024.","un"],
+["hostilities","Use of Palestinians as human shields","Haaretz (2024), Breaking the Silence and AP (2025) documented soldiers forcing detainees to enter tunnels and buildings ahead of troops.","inquiry"],
+["hostilities","White phosphorus over populated areas (October 2023)","Human Rights Watch verified its use over Gaza City's port area.","ngo"],
+["hostilities","UN list of grave violations against children (2024)","The UN Secretary-General added Israel's armed forces to the annual list of parties committing grave violations against children.","un"],
+
+["starvation","“Complete siege” order (9 October 2023)","Defence Minister Yoav Gallant announced no electricity, food or fuel would enter Gaza. The ICJ cited the statement in its January 2024 order.","court"],
+["starvation","ICC arrest warrants (21 November 2024)","The ICC issued warrants for Benjamin Netanyahu and Yoav Gallant, finding reasonable grounds for the war crime of starvation and crimes against humanity of murder and persecution.","court"],
+["starvation","ICJ order on famine (28 March 2024)","The Court noted famine was setting in and ordered Israel to ensure unhindered delivery of food, water, fuel and medical aid.","court"],
+["starvation","ICJ order to halt Rafah offensive (24 May 2024)","Israel continued military operations in Rafah after the order.","court"],
+["starvation","Total aid blockade (March–May 2025)","Israel let no food, fuel or medicine into Gaza for about eleven weeks, as recorded by OCHA and WFP.","un"],
+["starvation","Famine confirmed (22 August 2025)","The IPC confirmed famine in Gaza Governorate, the first in the Middle East; the UN called it entirely man-made.","un"],
+["starvation","Killings near aid sites (2025)","OHCHR recorded more than 1,300 Palestinians killed while seeking food between late May and end of July 2025, most near Gaza Humanitarian Foundation sites.","un"],
+["starvation","Soldiers ordered to fire on aid crowds","Haaretz (June 2025) quoted soldiers saying they were told to shoot at unarmed crowds near distribution points.","inquiry"],
+["starvation","“Flour massacre” (29 February 2024)","More than 100 people were killed at an aid convoy on al-Rashid Road; UN experts condemned the shooting of starving civilians.","un"],
+["starvation","Water deprivation (December 2024)","Human Rights Watch found Israel deliberately deprived Gaza of water, amounting to extermination and acts of genocide.","ngo"],
+["starvation","Starvation as a weapon of war (December 2023)","Human Rights Watch documented early in the war that Israel used starvation of civilians as a method of warfare.","ngo"],
+["starvation","UNRWA ban (2024–2025)","The Knesset barred UNRWA in October 2024. The ICJ advisory opinion of 22 October 2025 found Israel must facilitate UN relief, including UNRWA, and may not use starvation as a method of war.","court"],
+
+["displacement","Mass displacement in Gaza","UNRWA estimates about 1.9 million people, roughly 90% of Gaza's population, were displaced, many repeatedly.","un"],
+["displacement","Forced displacement as a crime against humanity (2024)","HRW's report Hopeless, Starving, and Besieged found forced displacement amounting to war crimes and crimes against humanity, and ethnic cleansing in areas made permanently uninhabitable.","ngo"],
+["displacement","Siege of northern Gaza (from October 2024)","Former Israeli defence minister and chief of staff Moshe Ya'alon said in December 2024 that the army was carrying out ethnic cleansing there.","inquiry"],
+["displacement","“Voluntary emigration” and the Rafah “humanitarian city” (2025)","Defence Minister Israel Katz set up a directorate for Palestinians' departure and announced a plan to concentrate Gazans in Rafah. Legal scholars said this would be forcible transfer.","inquiry"],
+["displacement","Operation “Iron Wall” (from January 2025)","UNRWA reported about 40,000 refugees forced out of Jenin, Tulkarm and Nur Shams camps, the largest West Bank displacement since 1967.","un"],
+["displacement","Masafer Yatta (2022)","Israel's High Court allowed the eviction of about 1,000 residents for a firing zone. UN experts said this would be forcible transfer, a grave breach.","un"],
+["displacement","Herding communities driven out by settlers","B'Tselem and OCHA documented dozens of Area C herding communities emptied by settler violence since October 2023, often with soldiers present.","ngo"],
+["displacement","Sheikh Jarrah and Silwan evictions","The UN rights office said in May 2021 that evicting Palestinian families in East Jerusalem may amount to forcible transfer, a war crime.","un"],
+["displacement","The 1948 expulsions","Israeli historian Benny Morris documented expulsions such as Lydda and Ramle in July 1948, part of the flight or expulsion of about 700,000 Palestinians.","inquiry"],
+["displacement","Denial of return","UNGA Resolution 194 (1948) and UNSC Resolution 237 (1967) call for the return of displaced Palestinians. Israel has not allowed it.","un"],
+
+["genocide","ICJ provisional measures (26 January 2024)","The Court found Palestinians' rights under the Genocide Convention plausible and ordered Israel to prevent genocidal acts and punish incitement. Three binding orders remain in force.","court"],
+["genocide","Officials' statements cited by the Court","The ICJ's January 2024 order quoted statements by Yoav Gallant, President Isaac Herzog and Israel Katz on the siege and on Gaza's population as a whole.","court"],
+["genocide","UN Commission of Inquiry (16 September 2025)","The commission chaired by Navi Pillay concluded Israel committed four of the five acts of genocide with genocidal intent.","un"],
+["genocide","Amnesty International (5 December 2024)","The report You Feel Like You Are Subhuman concluded Israel committed and is committing genocide in Gaza.","ngo"],
+["genocide","Human Rights Watch (December 2024)","HRW found acts of genocide through deliberate deprivation of water.","ngo"],
+["genocide","Israeli human-rights groups (July 2025)","B'Tselem (Our Genocide) and Physicians for Human Rights–Israel both concluded Israel is committing genocide.","ngo"],
+["genocide","Genocide scholars (September 2025)","The International Association of Genocide Scholars adopted a resolution stating Israel's conduct meets the legal definition of genocide.","inquiry"],
+["genocide","UN Special Rapporteur (March 2024)","Francesca Albanese's report Anatomy of a Genocide found reasonable grounds that the threshold of genocide was met.","un"],
+["genocide","Prime Minister's “Amalek” reference (28 October 2023)","Netanyahu invoked the biblical Amalek in a speech to troops; South Africa cited it before the ICJ as evidence of intent.","court"],
+["genocide","Israeli Holocaust and genocide historians","Scholars including Omer Bartov and Amos Goldberg have publicly concluded Israel is committing genocide.","inquiry"],
+
+["detention","Sde Teiman abuse","Israeli military prosecutors indicted five reservists in February 2025 for aggravated abuse of a Gaza detainee at the Sde Teiman camp.","court"],
+["detention","Welcome to Hell (August 2024)","B'Tselem's report, based on 55 former detainees, documented systematic abuse, sexual violence and starvation across Israeli prisons.","ngo"],
+["detention","Deaths in custody","Physicians for Human Rights–Israel documented dozens of Palestinians who died in Israeli custody after October 2023.","ngo"],
+["detention","Mass detention without charge","HaMoked figures show more than 3,000 Palestinians held in administrative detention, without charge or trial, through 2024 and 2025.","ngo"],
+["detention","Detainees held incommunicado","The ICRC has been denied access to Palestinian detainees since October 2023; many Gaza detainees were held under the Unlawful Combatants Law without lawyers.","ngo"],
+["detention","Ill-treatment of children (2013)","UNICEF found ill-treatment of Palestinian children in Israeli military detention widespread, systematic and institutionalised.","un"],
+["detention","Killing of Shireen Abu Akleh (11 May 2022)","Israel's army acknowledged a “high possibility” one of its soldiers shot the Al Jazeera journalist. No one was prosecuted.","inquiry"],
+["detention","Huwara and West Bank killings","The Israeli general commanding the region called the February 2023 settler attack on Huwara a pogrom. OCHA recorded more than 1,000 Palestinians killed in the West Bank from October 2023 to 2025.","un"],
+
+["earlier","Deir Yassin (April 1948)","Irgun and Lehi fighters, pre-state forces later absorbed into the Israeli army, killed more than 100 villagers, including women and children.","inquiry"],
+["earlier","Qibya (October 1953)","Unit 101, led by Ariel Sharon, killed about 69 villagers in a reprisal raid. UNSC Resolution 101 censured Israel.","un"],
+["earlier","Kafr Qasim (October 1956)","Border Police killed 49 Arab citizens of Israel for breaking a curfew they had not been told of. An Israeli military court convicted the officers and ruled the order manifestly illegal.","court"],
+["earlier","Sabra and Shatila (September 1982)","Israel's Kahan Commission found Defence Minister Ariel Sharon personally responsible for letting Phalangist militias into the camps, where hundreds of civilians were massacred.","inquiry"],
+["earlier","Qana (April 1996)","Israeli shelling of a UN compound killed 106 sheltering civilians. A UN military adviser's report found a technical error unlikely.","un"],
+["earlier","Cluster munitions in Lebanon (2006)","The UN estimated up to 4 million submunitions were fired, most in the last 72 hours before the ceasefire; HRW called their use in populated areas indiscriminate.","un"],
+["earlier","Operation Cast Lead (2008–2009)","HRW's Rain of Fire documented unlawful white phosphorus use. The Goldstone report found war crimes; Goldstone later retracted its finding of intentional targeting, while co-authors stood by it.","ngo"],
+["earlier","Operation Protective Edge (2014)","A UN Commission of Inquiry found possible war crimes by Israel and by Palestinian armed groups. OCHA counted 2,251 Palestinians killed, including 1,462 civilians.","un"],
+["earlier","Pager attacks in Lebanon (September 2024)","UN experts said the simultaneous explosion of thousands of devices violated the right to life and the ban on booby-traps in civilian objects.","un"],
+["earlier","Killing of Reuters journalist Issam Abdallah (13 October 2023)","Reuters' investigation and a UNIFIL report found an Israeli tank fired on clearly identifiable journalists in southern Lebanon, breaching international law.","un"]
+];
+
+
+const TYPES={all:"All",court:"Court",un:"UN",ngo:"NGO",inquiry:"Inquiry / press"};
+const list=document.getElementById("list");
+let n=0;
+SECTIONS.forEach(([id,name],i)=>{
+  const items=D.filter(d=>d[0]===id),first=n+1,last=n+items.length;
+  const s=document.createElement("section");s.id=id;
+  s.innerHTML=`<h2 class="sec">${name}</h2>`;
+  items.forEach(d=>{n++;
+    const a=document.createElement("article");a.className="item";
+    a.innerHTML=`<div class="num">${n}</div><div><h3>${d[1]}</h3><p>${d[2]}</p><div class="src label ${d[3]}">${TYPES[d[3]]}</div></div>`;
+    s.appendChild(a);});
+  list.appendChild(s);
+  });
+</script>
+</body>
+</html>
